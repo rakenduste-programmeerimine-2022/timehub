@@ -1,6 +1,7 @@
 import "./App.css"
-import { NavBar } from "./pages/NavBar"
 
-function App() {}
+function App() {
+  return
+}
 
 export default App
