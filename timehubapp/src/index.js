@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { Children } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import { Main } from './Pages/Main';
+import { Login } from './Pages/Login';
+import ErrorPage from './Pages/ErrorPage';
+import { Redirect } from './Pages/Redirect';
+import './App.css';
+
+
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <Login />,
+    errorElement:<ErrorPage/>
+  },{
+    path: "/login",
+    element: <Login />,
+    errorElement:<ErrorPage/>
+  },
+  {
+    path:"/main",
+    element:<Main/>,
+    errorElement:<ErrorPage/>
+    ///Here pages for the MainPage
+  }
+
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
