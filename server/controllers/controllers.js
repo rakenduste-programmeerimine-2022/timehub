@@ -2,15 +2,6 @@
 
 exports.login = (req, res) =>{
     console.log("login request recieved")
-    
-    let usr =req.body.username;
-    let pwd =req.body.password;
-
-    console.log(usr)
-    console.log(pwd)
-    
-    res.header("Access-Control-Allow-Origin", "*");
-    res.sendStatus(200)
 
     //send to database or something
 }
