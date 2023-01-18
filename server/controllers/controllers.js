@@ -1,10 +1,13 @@
 //CRUD
 
+
 exports.login = (req, res) =>{
     console.log("login request recieved")
+    const loginInfo = {usr: req.body.username,pwd: req.body.password}
 
     //send to database or something
 }
+
 exports.getUser = (req,res) =>{
     console.log("user data requested")
     //Check if logged in

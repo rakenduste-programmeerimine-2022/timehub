@@ -15,12 +15,13 @@ const loginRouter = require("./routes/authen.js");
 
 app.use(cors())
 app.use(morgan("dev"))
+app.use(express.json())
 app.use(userInfo)
 app.use(loginRouter)
 
 
 
-const uri = "mongodb+srv://AdminTest:AdminTest@clustertesthub.3o00obk.mongodb.net/?retryWrites=true&w=majority"
+const uri = "mongodb+srv://AdminTest:AdminTest@clustertesthub.3o00obk.mongodb.net/TestHubOnline?retryWrites=true&w=majority"
 //dot env refusing to work.
 
 mongoose
