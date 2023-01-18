@@ -26,7 +26,7 @@ exports.getUsers = async (req, res) => {
         };
         userlist.push(user);
       });
-      res.json({userlist});
+      res.json({userlist}).status(200);
     });
   } catch {
     res.sendStatus(500);

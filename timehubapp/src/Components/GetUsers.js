@@ -14,3 +14,5 @@ export default async function  GetUserList(){
   }
 
   //All of this not working. seek redoing. List revieved fine. 
+
+  //Try to load all users on button press.
