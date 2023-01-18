@@ -9,11 +9,11 @@ const userDataSchema = new mongoose.Schema(
     password: { type: String, required: true },
     admin: { type: Boolean, default: () => false },
     profileData: {
-      fname: String,
-      lname: String,
+      fname: { type: String, required: true },
+      lname: { type: String, required: true },
       contact: {
-        phone: String,
-        email: String,
+        phone: { type: String, required: true },
+        email: { type: String, required: true },
       },
     },
     workData: {
@@ -21,34 +21,9 @@ const userDataSchema = new mongoose.Schema(
       default:()=> 0},
       hoursWorked: {type:Number,
       default:()=> 0},
-    }
-  },
-  { collection: "usersNew" }
-);
-
-const userDataModel = mongoose.model("usersNew",userDataSchema)
-
-const userListDataSchema = new mongoose.Schema({
-  profileData: {
-    fname: String,
-    lname: String,
-    contact: {
-      phone: String,
-      email: String,
     },
   },
-  workData: {
-    position: {type:Number,
-    default:()=> 0},
-    hoursWorked: {type:Number,
-    default:()=> 0},
-  }
-})
+  { collection: "usersNew" }
+)
 
-const userListDataModel = mongoose.model("usersNew",userListDataSchema)
-
-module.exports = {
-  userDataModel:userDataModel,
-  userListDataModel:userListDataModel
-  
-}
+module.exports = mongoose.model("usersNew", userDataSchema);

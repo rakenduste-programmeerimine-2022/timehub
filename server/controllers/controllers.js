@@ -10,14 +10,21 @@ exports.getUser = (req,res) =>{
     //request user info from db
 }
 
+
 exports.getUsers = async (req,res) =>{
     try{
         console.log("Users list requested")
+        const userlist = []
     //Check if logged in
 
     //request users list from db
-    usersList = UserSchema.find({})
-    console.log(usersList)
+    usersList = UserSchema.find({}, async function(err, result){
+    result.forEach(element => {
+        console.log(element.username)
+    });
+
+
+    })
     }catch{
         res.sendStatus(500)
     }
