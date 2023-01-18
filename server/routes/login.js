@@ -1,7 +1,9 @@
+require("dotenv").config()
 const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/controllers");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken")
 
 const UserSchema = require("../db/schema");
 
@@ -10,23 +12,7 @@ const mongoose = require("mongoose");
 
 router.use(express.json());
 
-router.post("/login", (req, res) => {
-  console.log("login request recieved");
-  const loginusr = req.body.username;
-  const loginpwd = req.body.password;
-
-  console.log(req.body);
-  //Validate
-  UserSchema.findOne({ username: req.body.username }, function (err, result) {
-    if (!(result == null) && loginpwd == result.password) {
-      console.log("userFound and pwd matches");
-      res.json({ answer: "success", admin: result.admin });
-    } else {
-      res.json({ answer: "incorrect credentials" });
-    }
-  });
-});
-
+//Currently Operating One
 router.post("/loginHashed", async (req, res) => {
   console.log("login request recieved");
   const loginusr = req.body.username;
@@ -35,24 +21,27 @@ router.post("/loginHashed", async (req, res) => {
 
   UserSchema.findOne({ username: req.body.username }, async function (err, result) {
     if (result == null) {
-        console.log("no user")
+        res.json({answer:"failed"})
       return; //Send that user missing orsmth
     }
     if(await bcrypt.compare(loginpwd, result.password)){
         console.log("match")
+        const user = { username: result.username, admin: result.admin}
+        const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+
+      res.json({accessToken:accessToken,  success: true});
+      
+      console.log(accessToken)
     }else{
         console.log("not match")
+        res.json({answer:"failed"})
     }
   });
 });
 
-async function comparePws(pwd, hpwd) {
-  try {
-    return await bcrypt.compare(pwd, hpwd);
-  } catch {
-    return e;
-  }
-}
+
+//Testing and stuff...
+
 
 //See this for creating users
 router.post("/loginCreate", async (req, res) => {
@@ -72,3 +61,23 @@ router.post("/loginCreate", async (req, res) => {
 });
 
 module.exports = router;
+
+router.post("/login", (req, res) => {
+    console.log("login request recieved");
+    const loginusr = req.body.username;
+    const loginpwd = req.body.password;
+  
+    console.log(req.body);
+    //Validate
+    UserSchema.findOne({ username: req.body.username }, function (err, result) {
+      if (!(result == null) && loginpwd == result.password) {
+        console.log("userFound and pwd matches");
+  
+          
+      
+  
+      } else {
+        res.json({ answer: "incorrect credentials" });
+      }
+    });
+  });

@@ -15,7 +15,7 @@ export const LoginBox = () => {
     Axios.post("http://localhost:8080/loginHashed", {username: UsernameInput,password:PasswordInput})
     .then((response) => {
       setBackendData(response)
-      console.log(response)
+      console.log(response.body.result)
     })
   }
 
