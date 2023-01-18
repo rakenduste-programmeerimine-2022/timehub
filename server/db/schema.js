@@ -21,9 +21,34 @@ const userDataSchema = new mongoose.Schema(
       default:()=> 0},
       hoursWorked: {type:Number,
       default:()=> 0},
-    },
+    }
   },
   { collection: "usersNew" }
 );
 
-module.exports = mongoose.model("usersNew", userDataSchema);
+const userDataModel = mongoose.model("usersNew",userDataSchema)
+
+const userListDataSchema = new mongoose.Schema({
+  profileData: {
+    fname: String,
+    lname: String,
+    contact: {
+      phone: String,
+      email: String,
+    },
+  },
+  workData: {
+    position: {type:Number,
+    default:()=> 0},
+    hoursWorked: {type:Number,
+    default:()=> 0},
+  }
+})
+
+const userListDataModel = mongoose.model("usersNew",userListDataSchema)
+
+module.exports = {
+  userDataModel:userDataModel,
+  userListDataModel:userListDataModel
+  
+}

@@ -1,12 +1,7 @@
 //CRUD
 
-
-exports.login = (req, res) =>{
-    console.log("login request recieved")
-    const loginInfo = {usr: req.body.username,pwd: req.body.password}
-
-    //send to database or something
-}
+const mongoose = require("mongoose");
+const UserSchema = require("../db/schema");
 
 exports.getUser = (req,res) =>{
     console.log("user data requested")
@@ -15,11 +10,17 @@ exports.getUser = (req,res) =>{
     //request user info from db
 }
 
-exports.getUsers = (req,res) =>{
-    console.log("Users list requested")
+exports.getUsers = async (req,res) =>{
+    try{
+        console.log("Users list requested")
     //Check if logged in
 
     //request users list from db
+    usersList = UserSchema.find({})
+    console.log(usersList)
+    }catch{
+        res.sendStatus(500)
+    }
     
 }
 

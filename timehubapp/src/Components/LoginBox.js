@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import { Button, TextField } from "@mui/material";
+import { Button, Link, TextField } from "@mui/material";
 import Axios from "axios"
 
 export const LoginBox = () => {
@@ -11,11 +11,16 @@ export const LoginBox = () => {
   
 
   const CheckLoginData =() => {
-    console.log(UsernameInput,PasswordInput)
     Axios.post("http://localhost:8080/loginHashed", {username: UsernameInput,password:PasswordInput})
     .then((response) => {
       setBackendData(response)
-      console.log(response.body.result)
+      if(response.data.success){
+        localStorage.setItem("tokenData",response.data)
+        window.location.href ="/main"
+        
+      }else{
+        window.alert("Login failed")
+      }
     })
   }
 

@@ -15,3 +15,11 @@ function authenticateToken(req,res, next){
         next()
     })
 }
+
+
+
+function generateAccessToken(user){
+    return jwt.sign(user,process.env.ACCESS_TOKEN_SECRET,{expiresIn:"20s"})
+  }
+
+module.exports = {authenticateToken,generateAccessToken}
