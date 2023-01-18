@@ -11,9 +11,11 @@ import { Login } from './Pages/Login';
 import ErrorPage from './Pages/ErrorPage';
 import { Redirect } from './Pages/Redirect';
 import './App.css';
-import Users from './Components/Users';
-import { User } from './Components/User';
-import NewUser from './Components/NewUser';
+import { Users } from './Pages/Users';
+import { User } from './Pages/User';
+import NewUser from './Pages/NewUser';
+
+
 
 
 
@@ -42,7 +44,7 @@ const router = createBrowserRouter([
         element:<User></User>
       },{
         path:"main/user/new",
-        element:<NewUser/>
+        element:<NewUser></NewUser>
       }
     ]
   }

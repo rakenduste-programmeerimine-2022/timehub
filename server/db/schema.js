@@ -19,6 +19,7 @@ const userDataSchema = new mongoose.Schema(
     workData: {
       position: {type:Number,
       default:()=> 0},
+      role:{type:String},
       hoursWorked: {type:Number,
       default:()=> 0},
     },

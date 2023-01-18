@@ -10,8 +10,8 @@ export const LoginBox = () => {
   const [backendData, setBackendData] = useState("");
   
 
-  const CheckLoginData =() => {
-    Axios.post("http://localhost:8080/loginHashed", {username: UsernameInput,password:PasswordInput})
+  const CheckLoginData = async() => {
+    await Axios.post("http://localhost:8080/loginHashed", {username: UsernameInput,password:PasswordInput})
     .then((response) => {
       setBackendData(response)
       if(response.data.success){
