@@ -1,11 +1,8 @@
-import { Box } from '@mui/material'
 import React from 'react'
-import GetUserList from '../Components/GetUsers'
+import { GetUsers } from '../Components/GetUsers'
 
 export const Users = () => {
   return (
-    <Box>
-        <GetUserList></GetUserList>
-    </Box>
+    <GetUsers/>
   )
 }

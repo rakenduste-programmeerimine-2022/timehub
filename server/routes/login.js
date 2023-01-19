@@ -28,7 +28,7 @@ router.post("/loginHashed", async (req, res) => {
     }
     if(await bcrypt.compare(loginpwd, result.password)){
         console.log("match")
-        const user = { username: result.username, admin: result.admin}
+        const user = {id:req.body._id, username: result.username, admin: result.admin}
         ///
         const accessToken = authent.generateAccessToken(user)
         const refreshToken = jwt.sign(user, process.env.REFREST_TOKEN_SECRET)

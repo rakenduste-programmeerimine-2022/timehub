@@ -1,18 +1,33 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Box } from "@mui/system"
-import Axios from "axios"
-import { Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
-export default async function  GetUserList(){
-    await Axios.get("http://localhost:8080/users").then((response)=>{
-        console.log(response)
-        const userList = response
-          return <p>hello</p>
+export const GetUsers = () => {
+  const [users,setUsers] = useState([])
+
+  useEffect(()=>{
+    axios.get("http://localhost:8080/users")
+    .then(res =>{
+      console.log(res)
+      setUsers(res.data)
     })
-  }
+    .catch(err=>{
+      console.log(err)
+    })
+  },[])
 
-  //All of this not working. seek redoing. List revieved fine. 
 
-  //Try to load all users on button press.
+  return (
+    <Box>
+        <Typography>Users here</Typography>
+        <div>
+        {users.map(user => <Box sx={{ display:"flex",padding:"5vh"}}>
+          <Link to={"/main/user/"+user.id}><Typography variant='h5' key={user.id}>{user.fname} {user.lname}</Typography></Link>
+          <Typography variant="h6">{user.role}</Typography>
+        </Box>)}
+        </div>
+    </Box>
+  )
+}

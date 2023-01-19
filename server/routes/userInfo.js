@@ -8,7 +8,7 @@ const CheckAuth = require("../controllers/tokenauth")
 
 router.get("/users",controller.getUsers)
 
-//router.post("/users/new",controller.createUser)
+router.post("/users/new",controller.createUser)
 
 //router.get("/users/:id",controller.getUser)
 

@@ -1,12 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const NewUser = props => {
+import NewUserForm from '../Components/NewUserForm'
+
+export const NewUser = () => {
   return (
-    <div>NewUser</div>
+    <NewUserForm/>
   )
 }
-
-NewUser.propTypes = {}
 
 export default NewUser
