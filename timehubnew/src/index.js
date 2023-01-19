@@ -5,6 +5,8 @@ import './index.css';
 import Errorpage from './pages/Errorpage';
 import { Loginpage } from './pages/Loginpage';
 import { Mainpage } from './pages/Mainpage';
+import { Newuserpage } from './pages/Newuserpage';
+import { Userspage } from './pages/Userspage';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -21,6 +23,9 @@ const router = createBrowserRouter([
       {
         path:"/main/users",
         element:<Userspage/>
+      },{
+        path:"/main/user/new",
+        element:<Newuserpage/>
       }
     ]
   }
