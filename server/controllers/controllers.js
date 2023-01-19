@@ -57,10 +57,10 @@ exports.getUsers = async (req, res) => {
 exports.createUser = (req, res) => {
   try{
     console.log("User creation requested");
-    console.log(req)
+    console.log(req.body)
   //Check data, if good send to db
 
-  /*UserSchema.countDocuments({username:req.body.username}, async function(err, result){
+  UserSchema.countDocuments({username:req.body.username}, async function(err, result){
    if(result==null){
 
     const hashedPwd = await bcrypt.hash(req.body.password, 10)
@@ -82,10 +82,12 @@ exports.createUser = (req, res) => {
       }
     }, async function(err, result){
       if(err){
+        console.log("")
         res.sendStatus(500)
       }
       else{
-        res.sendStatus(200)
+        console.log("New user added")
+        res.json({answer:"success"}).status(200)
       }
     } )
    }else{
@@ -93,7 +95,7 @@ exports.createUser = (req, res) => {
     res.sendStatus(7822)
    }
   })
-*/}catch{
+}catch{
     res.sendStatus(500)
   }
 };
