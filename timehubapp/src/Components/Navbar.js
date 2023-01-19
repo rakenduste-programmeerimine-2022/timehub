@@ -1,7 +1,10 @@
 import { AppBar, Box, Button, Container, Toolbar, Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const pages = ["Users","Profile"]
+const pages = ["users","profile"]
+//Profile needs to be remade or made different, as there is no /profile rn.
+
 
 export const Navbar = () => {
   return (
@@ -43,12 +46,14 @@ export const Navbar = () => {
           </Typography>
           <Box sx={{ flexGrow: 0,justifyContent:"flex-end", display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
+              <Link to={"/main/"+page}>
               <Button
                 key={page}
                 sx={{ my: 2, color: "white", display: "block", padding:"10px" }}
               >
                 {page}
               </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>

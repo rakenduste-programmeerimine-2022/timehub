@@ -5,3 +5,6 @@ mongoose.connect(uri)
 
 const db = mongoose.connection
 db.on("error", (error) =>(error))
+
+
+//Remains Unused rn

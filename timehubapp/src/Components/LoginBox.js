@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import { Button, TextField } from "@mui/material";
+import { Button, Link, TextField } from "@mui/material";
 import Axios from "axios"
 
 export const LoginBox = () => {
   const [UsernameInput, SetUsername] = useState("");
   const [PasswordInput, SetPassword] = useState("");
 
-  const [backendData, setBackendData] = useState("");
-  
-
-  const CheckLoginData =() => {
-    console.log(UsernameInput,PasswordInput)
-    Axios.post("http://localhost:8080/login", {username: UsernameInput,password:PasswordInput})
+  const CheckLoginData = async() => {
+    await Axios.post("http://localhost:8080/loginHashed", {username: UsernameInput,password:PasswordInput})
     .then((response) => {
       setBackendData(response)
-      console.log(response)
+      if(response.data.success){
+        localStorage.setItem("tokenData",response.data)
+        window.location.href ="/main"
+        
+      }else{
+        window.alert("Login failed")
+      }
     })
   }
 

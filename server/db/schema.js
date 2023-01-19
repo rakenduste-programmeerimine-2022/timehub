@@ -9,21 +9,22 @@ const userDataSchema = new mongoose.Schema(
     password: { type: String, required: true },
     admin: { type: Boolean, default: () => false },
     profileData: {
-      fname: String,
-      lname: String,
+      fname: { type: String, required: true },
+      lname: { type: String, required: true },
       contact: {
-        phone: String,
-        email: String,
+        phone: { type: String, required: true },
+        email: { type: String, required: true },
       },
     },
     workData: {
       position: {type:Number,
       default:()=> 0},
+      role:{type:String, required: true},
       hoursWorked: {type:Number,
       default:()=> 0},
     },
   },
   { collection: "usersNew" }
-);
+)
 
 module.exports = mongoose.model("usersNew", userDataSchema);

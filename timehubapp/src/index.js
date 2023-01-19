@@ -11,11 +11,17 @@ import { Login } from './Pages/Login';
 import ErrorPage from './Pages/ErrorPage';
 import { Redirect } from './Pages/Redirect';
 import './App.css';
+import { Users } from './Pages/Users';
+import { User } from './Pages/User';
+import NewUser from './Pages/NewUser';
+
+
 
 
 
 const router = createBrowserRouter([
   {
+    //What to do here?
     path:"/",
     element: <Login />,
     errorElement:<ErrorPage/>
@@ -27,8 +33,20 @@ const router = createBrowserRouter([
   {
     path:"/main",
     element:<Main/>,
-    errorElement:<ErrorPage/>
+    errorElement:<ErrorPage/>,
     ///Here pages for the MainPage
+    children:[
+      {
+        path:"/main/users",
+        element:<Users></Users>
+      },{
+        path:"/main/users/new",
+        element:<NewUser></NewUser>
+      },{
+        path:"/main/user/:id",
+        element:<User></User>
+      }
+    ]
   }
 
 ]);
