@@ -22,7 +22,7 @@ const GetUsersList = () => {
 
   return(
     <div>
-        {users.map((user)=>{
+        {users.map(user=>{
             <Link to={"/main/user/"+user.id}>
                 <Paper
                 sx={{

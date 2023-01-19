@@ -5,6 +5,10 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const UserSchema = require("../db/schema");
 
+
+//////////////////////////////////////////////////////////////////////
+
+
 exports.getUser = async (req, res) => {
   console.log("user data requested");
   //Check if logged in
@@ -30,6 +34,9 @@ exports.getUser = async (req, res) => {
   }
 };
 
+//////////////////////////////////////////////////////////////////////
+
+
 exports.getUsers = async (req, res) => {
   try {
     console.log("Users list requested");
@@ -54,13 +61,17 @@ exports.getUsers = async (req, res) => {
   }
 };
 
+
+//////////////////////////////////////////////////////////////////////
+
+
 exports.createUser = (req, res) => {
   try{
     console.log("User creation requested");
-    console.log(req)
+    console.log(req.body)
   //Check data, if good send to db
 
-  /*UserSchema.countDocuments({username:req.body.username}, async function(err, result){
+  UserSchema.exists({username:req.body.username}, async function(err, result){
    if(result==null){
 
     const hashedPwd = await bcrypt.hash(req.body.password, 10)
@@ -82,21 +93,28 @@ exports.createUser = (req, res) => {
       }
     }, async function(err, result){
       if(err){
+        console.log(err)
+        console.log("1")
         res.sendStatus(500)
       }
       else{
-        res.sendStatus(200)
+        console.log("New user added")
+        res.json({answer:"success"}).status(200)
       }
     } )
    }else{
+    console.log("2")
     //something better, to note that user already exists
-    res.sendStatus(7822)
    }
   })
-*/}catch{
+}catch{
+    console.log("3")
     res.sendStatus(500)
   }
 };
+
+//////////////////////////////////////////////////////////////////////
+
 
 exports.deleteUser = (req, res) => {
   console.log("User deleted");
